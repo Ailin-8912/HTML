@@ -1,0 +1,934 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Demon Slayer 3D - Game HD</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/controls/OrbitControls.js"></script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            overflow: hidden;
+            background: #000;
+        }
+
+        #gameContainer {
+            position: relative;
+            width: 100vw;
+            height: 100vh;
+        }
+
+        #ui {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 100;
+        }
+
+        .ui-panel {
+            position: absolute;
+            background: rgba(0, 0, 0, 0.8);
+            border: 2px solid #ff6b35;
+            border-radius: 10px;
+            padding: 15px;
+            color: white;
+            pointer-events: auto;
+            backdrop-filter: blur(10px);
+            box-shadow: 0 0 30px rgba(255, 107, 53, 0.5);
+        }
+
+        #characterPanel {
+            top: 20px;
+            left: 20px;
+            width: 200px;
+        }
+
+        #swordPanel {
+            top: 20px;
+            right: 20px;
+            width: 200px;
+        }
+
+        #powerPanel {
+            bottom: 20px;
+            left: 20px;
+            width: 200px;
+        }
+
+        #outfitPanel {
+            bottom: 20px;
+            right: 20px;
+            width: 200px;
+        }
+
+        .panel-title {
+            font-size: 18px;
+            font-weight: bold;
+            margin-bottom: 10px;
+            text-align: center;
+            color: #ff6b35;
+            text-shadow: 0 0 10px rgba(255, 107, 53, 0.8);
+        }
+
+        .option-btn {
+            width: 100%;
+            padding: 10px;
+            margin: 5px 0;
+            background: linear-gradient(135deg, #ff6b35, #f7931e);
+            border: none;
+            border-radius: 5px;
+            color: white;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            font-size: 12px;
+        }
+
+        .option-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(255, 107, 53, 0.6);
+        }
+
+        .option-btn.active {
+            background: linear-gradient(135deg, #ff0000, #ff6b35);
+            box-shadow: 0 0 20px rgba(255, 0, 0, 0.8);
+        }
+
+        #healthBar {
+            position: absolute;
+            top: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 300px;
+            height: 30px;
+            background: rgba(0, 0, 0, 0.8);
+            border: 2px solid #ff6b35;
+            border-radius: 15px;
+            overflow: hidden;
+        }
+
+        #healthFill {
+            height: 100%;
+            background: linear-gradient(90deg, #ff0000, #ff6b35);
+            width: 100%;
+            transition: width 0.3s ease;
+            box-shadow: 0 0 20px rgba(255, 107, 53, 0.8);
+        }
+
+        #score {
+            position: absolute;
+            top: 70px;
+            left: 50%;
+            transform: translateX(-50%);
+            color: white;
+            font-size: 24px;
+            font-weight: bold;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8);
+        }
+
+        #controls {
+            position: absolute;
+            bottom: 50%;
+            left: 50%;
+            transform: translateX(-50%);
+            color: white;
+            text-align: center;
+            font-size: 14px;
+            background: rgba(0, 0, 0, 0.7);
+            padding: 10px 20px;
+            border-radius: 10px;
+            border: 1px solid #ff6b35;
+        }
+
+        .loading {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            color: white;
+            font-size: 24px;
+            text-align: center;
+        }
+
+        .loading::after {
+            content: '';
+            display: inline-block;
+            width: 20px;
+            height: 20px;
+            border: 3px solid #ff6b35;
+            border-radius: 50%;
+            border-top-color: transparent;
+            animation: spin 1s linear infinite;
+            margin-left: 10px;
+        }
+
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+
+        #combo {
+            position: absolute;
+            top: 120px;
+            left: 50%;
+            transform: translateX(-50%);
+            color: #ffeb3b;
+            font-size: 32px;
+            font-weight: bold;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        #combo.show {
+            opacity: 1;
+        }
+    </style>
+</head>
+<body>
+    <div id="gameContainer">
+        <div id="ui">
+            <div class="loading" id="loading">Memuat Game HD...</div>
+            
+            <div id="healthBar" style="display: none;">
+                <div id="healthFill"></div>
+            </div>
+            
+            <div id="score" style="display: none;">Score: 0</div>
+            
+            <div id="combo" style="display: none;">COMBO x<span id="comboCount">0</span></div>
+            
+            <div id="characterPanel" style="display: none;">
+                <div class="panel-title">KARAKTER</div>
+                <button class="option-btn active" onclick="changeCharacter('tanjiro')">Tanjiro</button>
+                <button class="option-btn" onclick="changeCharacter('zenitsu')">Zenitsu</button>
+                <button class="option-btn" onclick="changeCharacter('inosuke')">Inosuke</button>
+            </div>
+            
+            <div id="swordPanel" style="display: none;">
+                <div class="panel-title">PEDANG</div>
+                <button class="option-btn active" onclick="changeSword('nichirin')">Nichirin Blade</button>
+                <button class="option-btn" onclick="changeSword('black')">Black Blade</button>
+                <button class="option-btn" onclick="changeSword('flame')">Flame Blade</button>
+                <button class="option-btn" onclick="changeSword('thunder')">Thunder Blade</button>
+            </div>
+            
+            <div id="powerPanel" style="display: none;">
+                <div class="panel-title">KEKUATAN</div>
+                <button class="option-btn active" onclick="changePower('water')">Water Breathing</button>
+                <button class="option-btn" onclick="changePower('flame')">Flame Breathing</button>
+                <button class="option-btn" onclick="changePower('thunder')">Thunder Breathing</button>
+                <button class="option-btn" onclick="changePower('beast')">Beast Breathing</button>
+            </div>
+            
+            <div id="outfitPanel" style="display: none;">
+                <div class="panel-title">KOSTUM</div>
+                <button class="option-btn active" onclick="changeOutfit('default')">Default</button>
+                <button class="option-btn" onclick="changeOutfit('training')">Training</button>
+                <button class="option-btn" onclick="changeOutfit('battle')">Battle Gear</button>
+                <button class="option-btn" onclick="changeOutfit('final')">Final Selection</button>
+            </div>
+            
+            <div id="controls" style="display: none;">
+                WASD: Bergerak | Space: Serangan | Mouse: Lihat | Q: Kekuatan Spesial
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Game variables
+        let scene, camera, renderer, controls;
+        let player, playerModel;
+        let enemies = [];
+        let particles = [];
+        let score = 0;
+        let health = 100;
+        let combo = 0;
+        let lastAttackTime = 0;
+        
+        // Game state
+        let currentCharacter = 'tanjiro';
+        let currentSword = 'nichirin';
+        let currentPower = 'water';
+        let currentOutfit = 'default';
+        
+        // Movement
+        const keys = {};
+        let moveSpeed = 0.1;
+        
+        // Initialize game
+        function init() {
+            // Scene setup
+            scene = new THREE.Scene();
+            scene.fog = new THREE.Fog(0x000000, 10, 50);
+            
+            // Camera setup
+            camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
+            camera.position.set(0, 5, 10);
+            
+            // Renderer setup
+            renderer = new THREE.WebGLRenderer({ antialias: true });
+            renderer.setSize(window.innerWidth, window.innerHeight);
+            renderer.shadowMap.enabled = true;
+            renderer.shadowMap.type = THREE.PCFSoftShadowMap;
+            renderer.setClearColor(0x000000);
+            document.getElementById('gameContainer').appendChild(renderer.domElement);
+            
+            // Controls
+            controls = new THREE.OrbitControls(camera, renderer.domElement);
+            controls.enableDamping = true;
+            controls.dampingFactor = 0.05;
+            controls.maxPolarAngle = Math.PI / 2.2;
+            
+            // Lighting
+            setupLighting();
+            
+            // Environment
+            createEnvironment();
+            
+            // Player
+            createPlayer();
+            
+            // Event listeners
+            setupEventListeners();
+            
+            // Hide loading, show UI
+            setTimeout(() => {
+                document.getElementById('loading').style.display = 'none';
+                document.querySelectorAll('.ui-panel, #healthBar, #score, #controls, #combo').forEach(el => {
+                    el.style.display = 'block';
+                });
+            }, 2000);
+            
+            // Start game loop
+            animate();
+            
+            // Spawn enemies
+            setInterval(spawnEnemy, 3000);
+        }
+        
+        function setupLighting() {
+            // Ambient light
+            const ambientLight = new THREE.AmbientLight(0x404040, 0.5);
+            scene.add(ambientLight);
+            
+            // Directional light (moon)
+            const moonLight = new THREE.DirectionalLight(0x4080ff, 0.8);
+            moonLight.position.set(10, 20, 10);
+            moonLight.castShadow = true;
+            moonLight.shadow.camera.left = -20;
+            moonLight.shadow.camera.right = 20;
+            moonLight.shadow.camera.top = 20;
+            moonLight.shadow.camera.bottom = -20;
+            moonLight.shadow.mapSize.width = 2048;
+            moonLight.shadow.mapSize.height = 2048;
+            scene.add(moonLight);
+            
+            // Point lights for atmosphere
+            const torch1 = new THREE.PointLight(0xff6b35, 1, 10);
+            torch1.position.set(-5, 3, -5);
+            scene.add(torch1);
+            
+            const torch2 = new THREE.PointLight(0xff6b35, 1, 10);
+            torch2.position.set(5, 3, -5);
+            scene.add(torch2);
+        }
+        
+        function createEnvironment() {
+            // Ground
+            const groundGeometry = new THREE.PlaneGeometry(50, 50);
+            const groundMaterial = new THREE.MeshStandardMaterial({ 
+                color: 0x2a2a2a,
+                roughness: 0.8,
+                metalness: 0.2
+            });
+            const ground = new THREE.Mesh(groundGeometry, groundMaterial);
+            ground.rotation.x = -Math.PI / 2;
+            ground.receiveShadow = true;
+            scene.add(ground);
+            
+            // Mountains in background
+            for (let i = 0; i < 5; i++) {
+                const mountainGeometry = new THREE.ConeGeometry(
+                    Math.random() * 5 + 3,
+                    Math.random() * 10 + 10,
+                    4
+                );
+                const mountainMaterial = new THREE.MeshStandardMaterial({ 
+                    color: 0x1a1a1a,
+                    roughness: 1
+                });
+                const mountain = new THREE.Mesh(mountainGeometry, mountainMaterial);
+                mountain.position.set(
+                    (Math.random() - 0.5) * 40,
+                    mountain.geometry.parameters.height / 2,
+                    -20 - Math.random() * 10
+                );
+                mountain.castShadow = true;
+                scene.add(mountain);
+            }
+            
+            // Trees
+            for (let i = 0; i < 20; i++) {
+                createTree(
+                    (Math.random() - 0.5) * 40,
+                    -15 + Math.random() * 30
+                );
+            }
+            
+            // Torches
+            createTorch(-5, 0, -5);
+            createTorch(5, 0, -5);
+        }
+        
+        function createTree(x, z) {
+            const trunkGeometry = new THREE.CylinderGeometry(0.3, 0.5, 4);
+            const trunkMaterial = new THREE.MeshStandardMaterial({ color: 0x4a3c28 });
+            const trunk = new THREE.Mesh(trunkGeometry, trunkMaterial);
+            trunk.position.set(x, 2, z);
+            trunk.castShadow = true;
+            scene.add(trunk);
+            
+            const leavesGeometry = new THREE.SphereGeometry(2, 8, 6);
+            const leavesMaterial = new THREE.MeshStandardMaterial({ color: 0x0d4f0d });
+            const leaves = new THREE.Mesh(leavesGeometry, leavesMaterial);
+            leaves.position.set(x, 5, z);
+            leaves.castShadow = true;
+            scene.add(leaves);
+        }
+        
+        function createTorch(x, y, z) {
+            const poleGeometry = new THREE.CylinderGeometry(0.1, 0.1, 3);
+            const poleMaterial = new THREE.MeshStandardMaterial({ color: 0x8b4513 });
+            const pole = new THREE.Mesh(poleGeometry, poleMaterial);
+            pole.position.set(x, y + 1.5, z);
+            scene.add(pole);
+            
+            const flameGeometry = new THREE.SphereGeometry(0.3, 8, 6);
+            const flameMaterial = new THREE.MeshBasicMaterial({ 
+                color: 0xff6b35,
+                emissive: 0xff6b35,
+                emissiveIntensity: 2
+            });
+            const flame = new THREE.Mesh(flameGeometry, flameMaterial);
+            flame.position.set(x, y + 3, z);
+            scene.add(flame);
+        }
+        
+        function createPlayer() {
+            player = new THREE.Group();
+            
+            // Body
+            const bodyGeometry = new THREE.BoxGeometry(0.8, 1.5, 0.4);
+            const bodyMaterial = new THREE.MeshStandardMaterial({ color: 0x8b0000 });
+            const body = new THREE.Mesh(bodyGeometry, bodyMaterial);
+            body.position.y = 1;
+            body.castShadow = true;
+            player.add(body);
+            
+            // Head
+            const headGeometry = new THREE.SphereGeometry(0.4, 16, 16);
+            const headMaterial = new THREE.MeshStandardMaterial({ color: 0xffdbac });
+            const head = new THREE.Mesh(headGeometry, headMaterial);
+            head.position.y = 2.2;
+            head.castShadow = true;
+            player.add(head);
+            
+            // Hair (based on character)
+            updatePlayerAppearance();
+            
+            // Sword
+            createSword();
+            
+            player.position.y = 0.75;
+            player.castShadow = true;
+            scene.add(player);
+            playerModel = player;
+        }
+        
+        function createSword() {
+            // Remove existing sword
+            const existingSword = player.getObjectByName('sword');
+            if (existingSword) {
+                player.remove(existingSword);
+            }
+            
+            const swordGroup = new THREE.Group();
+            swordGroup.name = 'sword';
+            
+            // Blade
+            const bladeGeometry = new THREE.BoxGeometry(0.1, 2, 0.05);
+            let bladeColor = 0xc0c0c0; // Default silver
+            
+            switch(currentSword) {
+                case 'black':
+                    bladeColor = 0x1a1a1a;
+                    break;
+                case 'flame':
+                    bladeColor = 0xff4500;
+                    break;
+                case 'thunder':
+                    bladeColor = 0xffd700;
+                    break;
+            }
+            
+            const bladeMaterial = new THREE.MeshStandardMaterial({ 
+                color: bladeColor,
+                metalness: 0.8,
+                roughness: 0.2
+            });
+            const blade = new THREE.Mesh(bladeGeometry, bladeMaterial);
+            blade.position.y = 1;
+            swordGroup.add(blade);
+            
+            // Handle
+            const handleGeometry = new THREE.CylinderGeometry(0.05, 0.05, 0.8);
+            const handleMaterial = new THREE.MeshStandardMaterial({ color: 0x8b4513 });
+            const handle = new THREE.Mesh(handleGeometry, handleMaterial);
+            handle.position.y = 0.1;
+            handle.rotation.z = Math.PI / 2;
+            swordGroup.add(handle);
+            
+            swordGroup.position.set(0.6, 1, 0);
+            swordGroup.rotation.z = -Math.PI / 4;
+            player.add(swordGroup);
+        }
+        
+        function updatePlayerAppearance() {
+            // Update hair based on character
+            const existingHair = player.getObjectByName('hair');
+            if (existingHair) {
+                player.remove(existingHair);
+            }
+            
+            const hairGeometry = new THREE.SphereGeometry(0.45, 16, 16);
+            let hairColor = 0x8b4513; // Default brown
+            
+            switch(currentCharacter) {
+                case 'tanjiro':
+                    hairColor = 0x8b4513;
+                    break;
+                case 'zenitsu':
+                    hairColor = 0xffd700;
+                    break;
+                case 'inosuke':
+                    hairColor = 0x000080;
+                    break;
+            }
+            
+            const hairMaterial = new THREE.MeshStandardMaterial({ color: hairColor });
+            const hair = new THREE.Mesh(hairGeometry, hairMaterial);
+            hair.position.y = 2.5;
+            hair.scale.y = 0.8;
+            hair.name = 'hair';
+            player.add(hair);
+            
+            // Update outfit
+            const body = player.children.find(child => child.geometry instanceof THREE.BoxGeometry);
+            if (body) {
+                switch(currentOutfit) {
+                    case 'default':
+                        body.material.color.setHex(0x8b0000);
+                        break;
+                    case 'training':
+                        body.material.color.setHex(0x4169e1);
+                        break;
+                    case 'battle':
+                        body.material.color.setHex(0x2f4f4f);
+                        break;
+                    case 'final':
+                        body.material.color.setHex(0x800080);
+                        break;
+                }
+            }
+        }
+        
+        function spawnEnemy() {
+            const enemy = new THREE.Group();
+            
+            // Demon body
+            const bodyGeometry = new THREE.BoxGeometry(1, 2, 1);
+            const bodyMaterial = new THREE.MeshStandardMaterial({ 
+                color: 0x4b0082,
+                emissive: 0x4b0082,
+                emissiveIntensity: 0.2
+            });
+            const body = new THREE.Mesh(bodyGeometry, bodyMaterial);
+            body.position.y = 1;
+            body.castShadow = true;
+            enemy.add(body);
+            
+            // Eyes
+            const eyeGeometry = new THREE.SphereGeometry(0.1, 8, 8);
+            const eyeMaterial = new THREE.MeshBasicMaterial({ 
+                color: 0xff0000,
+                emissive: 0xff0000,
+                emissiveIntensity: 1
+            });
+            
+            const leftEye = new THREE.Mesh(eyeGeometry, eyeMaterial);
+            leftEye.position.set(-0.2, 1.5, 0.5);
+            enemy.add(leftEye);
+            
+            const rightEye = new THREE.Mesh(eyeGeometry, eyeMaterial);
+            rightEye.position.set(0.2, 1.5, 0.5);
+            enemy.add(rightEye);
+            
+            // Position enemy
+            const angle = Math.random() * Math.PI * 2;
+            const distance = 15 + Math.random() * 10;
+            enemy.position.set(
+                Math.cos(angle) * distance,
+                1,
+                Math.sin(angle) * distance
+            );
+            
+            enemy.userData = {
+                health: 50,
+                speed: 0.02 + Math.random() * 0.02,
+                lastAttack: 0
+            };
+            
+            enemy.castShadow = true;
+            scene.add(enemy);
+            enemies.push(enemy);
+        }
+        
+        function setupEventListeners() {
+            // Keyboard
+            document.addEventListener('keydown', (e) => {
+                keys[e.key.toLowerCase()] = true;
+                
+                if (e.key === ' ') {
+                    e.preventDefault();
+                    attack();
+                }
+                
+                if (e.key.toLowerCase() === 'q') {
+                    specialAttack();
+                }
+            });
+            
+            document.addEventListener('keyup', (e) => {
+                keys[e.key.toLowerCase()] = false;
+            });
+            
+            // Window resize
+            window.addEventListener('resize', () => {
+                camera.aspect = window.innerWidth / window.innerHeight;
+                camera.updateProjectionMatrix();
+                renderer.setSize(window.innerWidth, window.innerHeight);
+            });
+        }
+        
+        function handleMovement() {
+            const direction = new THREE.Vector3();
+            
+            if (keys['w']) direction.z -= 1;
+            if (keys['s']) direction.z += 1;
+            if (keys['a']) direction.x -= 1;
+            if (keys['d']) direction.x += 1;
+            
+            if (direction.length() > 0) {
+                direction.normalize();
+                direction.multiplyScalar(moveSpeed);
+                
+                // Apply camera rotation to movement
+                direction.applyQuaternion(camera.quaternion);
+                direction.y = 0;
+                
+                player.position.add(direction);
+                
+                // Rotate player to face movement direction
+                if (direction.length() > 0) {
+                    player.lookAt(player.position.clone().add(direction));
+                }
+            }
+        }
+        
+        function attack() {
+            const now = Date.now();
+            if (now - lastAttackTime < 500) return;
+            lastAttackTime = now;
+            
+            // Sword swing animation
+            const sword = player.getObjectByName('sword');
+            if (sword) {
+                const originalRotation = sword.rotation.z;
+                sword.rotation.z = Math.PI / 4;
+                setTimeout(() => {
+                    sword.rotation.z = originalRotation;
+                }, 200);
+            }
+            
+            // Check for hits
+            const attackRange = 3;
+            enemies.forEach((enemy, index) => {
+                const distance = player.position.distanceTo(enemy.position);
+                if (distance < attackRange) {
+                    // Hit effect
+                    createHitEffect(enemy.position);
+                    
+                    // Damage enemy
+                    enemy.userData.health -= 25;
+                    
+                    if (enemy.userData.health <= 0) {
+                        // Enemy defeated
+                        createDeathEffect(enemy.position);
+                        scene.remove(enemy);
+                        enemies.splice(index, 1);
+                        
+                        // Update score and combo
+                        score += 100;
+                        combo++;
+                        updateUI();
+                        
+                        // Show combo
+                        if (combo > 1) {
+                            showCombo();
+                        }
+                    }
+                }
+            });
+        }
+        
+        function specialAttack() {
+            // Create special attack effect based on power
+            const effectColors = {
+                water: 0x00bfff,
+                flame: 0xff4500,
+                thunder: 0xffd700,
+                beast: 0x8b4513
+            };
+            
+            const color = effectColors[currentPower];
+            
+            // Create expanding sphere of energy
+            const geometry = new THREE.SphereGeometry(1, 16, 16);
+            const material = new THREE.MeshBasicMaterial({ 
+                color: color,
+                transparent: true,
+                opacity: 0.8
+            });
+            const sphere = new THREE.Mesh(geometry, material);
+            sphere.position.copy(player.position);
+            sphere.position.y += 1;
+            scene.add(sphere);
+            
+            // Animate expansion
+            let scale = 1;
+            const expandInterval = setInterval(() => {
+                scale += 0.5;
+                sphere.scale.set(scale, scale, scale);
+                sphere.material.opacity -= 0.05;
+                
+                // Check hits
+                enemies.forEach((enemy, index) => {
+                    const distance = player.position.distanceTo(enemy.position);
+                    if (distance < scale * 2) {
+                        enemy.userData.health -= 50;
+                        if (enemy.userData.health <= 0) {
+                            createDeathEffect(enemy.position);
+                            scene.remove(enemy);
+                            enemies.splice(index, 1);
+                            score += 200;
+                            updateUI();
+                        }
+                    }
+                });
+                
+                if (sphere.material.opacity <= 0) {
+                    clearInterval(expandInterval);
+                    scene.remove(sphere);
+                }
+            }, 50);
+        }
+        
+        function createHitEffect(position) {
+            const particleCount = 10;
+            for (let i = 0; i < particleCount; i++) {
+                const geometry = new THREE.SphereGeometry(0.1, 4, 4);
+                const material = new THREE.MeshBasicMaterial({ 
+                    color: 0xff6b35,
+                    transparent: true
+                });
+                const particle = new THREE.Mesh(geometry, material);
+                particle.position.copy(position);
+                particle.position.y += 1;
+                
+                const velocity = new THREE.Vector3(
+                    (Math.random() - 0.5) * 0.2,
+                    Math.random() * 0.2,
+                    (Math.random() - 0.5) * 0.2
+                );
+                
+                particle.userData = { velocity, life: 1 };
+                scene.add(particle);
+                particles.push(particle);
+            }
+        }
+        
+        function createDeathEffect(position) {
+            const particleCount = 20;
+            for (let i = 0; i < particleCount; i++) {
+                const geometry = new THREE.SphereGeometry(0.2, 4, 4);
+                const material = new THREE.MeshBasicMaterial({ 
+                    color: 0x4b0082,
+                    transparent: true
+                });
+                const particle = new THREE.Mesh(geometry, material);
+                particle.position.copy(position);
+                
+                const velocity = new THREE.Vector3(
+                    (Math.random() - 0.5) * 0.3,
+                    Math.random() * 0.3,
+                    (Math.random() - 0.5) * 0.3
+                );
+                
+                particle.userData = { velocity, life: 1 };
+                scene.add(particle);
+                particles.push(particle);
+            }
+        }
+        
+        function updateEnemies() {
+            enemies.forEach(enemy => {
+                // Move towards player
+                const direction = player.position.clone().sub(enemy.position);
+                direction.y = 0;
+                direction.normalize();
+                direction.multiplyScalar(enemy.userData.speed);
+                enemy.position.add(direction);
+                
+                // Face player
+                enemy.lookAt(player.position);
+                
+                // Attack if close
+                const distance = enemy.position.distanceTo(player.position);
+                if (distance < 2) {
+                    const now = Date.now();
+                    if (now - enemy.userData.lastAttack > 1000) {
+                        enemy.userData.lastAttack = now;
+                        health -= 10;
+                        updateUI();
+                        
+                        // Knockback
+                        const knockback = player.position.clone().sub(enemy.position).normalize();
+                        knockback.multiplyScalar(0.5);
+                        player.position.add(knockback);
+                    }
+                }
+            });
+        }
+        
+        function updateParticles() {
+            particles.forEach((particle, index) => {
+                particle.position.add(particle.userData.velocity);
+                particle.userData.velocity.y -= 0.01; // Gravity
+                particle.userData.life -= 0.02;
+                particle.material.opacity = particle.userData.life;
+                
+                if (particle.userData.life <= 0) {
+                    scene.remove(particle);
+                    particles.splice(index, 1);
+                }
+            });
+        }
+        
+        function updateUI() {
+            document.getElementById('healthFill').style.width = health + '%';
+            document.getElementById('score').textContent = 'Score: ' + score;
+            
+            if (health <= 0) {
+                alert('Game Over! Score: ' + score);
+                location.reload();
+            }
+        }
+        
+        function showCombo() {
+            const comboElement = document.getElementById('combo');
+            document.getElementById('comboCount').textContent = combo;
+            comboElement.classList.add('show');
+            
+            setTimeout(() => {
+                comboElement.classList.remove('show');
+                combo = 0;
+            }, 2000);
+        }
+        
+        // UI Functions
+        function changeCharacter(character) {
+            currentCharacter = character;
+            updatePlayerAppearance();
+            
+            // Update button states
+            document.querySelectorAll('#characterPanel .option-btn').forEach(btn => {
+                btn.classList.remove('active');
+            });
+            event.target.classList.add('active');
+        }
+        
+        function changeSword(sword) {
+            currentSword = sword;
+            createSword();
+            
+            // Update button states
+            document.querySelectorAll('#swordPanel .option-btn').forEach(btn => {
+                btn.classList.remove('active');
+            });
+            event.target.classList.add('active');
+        }
+        
+        function changePower(power) {
+            currentPower = power;
+            
+            // Update button states
+            document.querySelectorAll('#powerPanel .option-btn').forEach(btn => {
+                btn.classList.remove('active');
+            });
+            event.target.classList.add('active');
+        }
+        
+        function changeOutfit(outfit) {
+            currentOutfit = outfit;
+            updatePlayerAppearance();
+            
+            // Update button states
+            document.querySelectorAll('#outfitPanel .option-btn').forEach(btn => {
+                btn.classList.remove('active');
+            });
+            event.target.classList.add('active');
+        }
+        
+        function animate() {
+            requestAnimationFrame(animate);
+            
+            handleMovement();
+            updateEnemies();
+            updateParticles();
+            
+            // Update camera to follow player
+            const cameraOffset = new THREE.Vector3(0, 5, 10);
+            cameraOffset.applyQuaternion(player.quaternion);
+            camera.position.lerp(player.position.clone().add(cameraOffset), 0.1);
+            controls.target.lerp(player.position.clone().add(new THREE.Vector3(0, 2, 0)), 0.1);
+            controls.update();
+            
+            renderer.render(scene, camera);
+        }
+        
+        // Start the game
+        init();
+    </script>
+</body>
+</html>

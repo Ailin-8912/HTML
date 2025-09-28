@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=<device-width>, initial-scale=1.0">
+    <title>Belajar Table HTML</title>
+    <style>
+        table{
+            width: 50%;
+            /** Gabungkan border jadi 1 **/
+            border-collapse: collapse;
+        }
+        /* pakai , (koma) agar bisa terapkan multiple efek */
+        td,th(
+            padding: 6px;
+        )
+    </style>
+</head>
+<body>
+    <h1>Belajar Table di HTML</h1>
+    <hr />
+    <table>
+        <!-- attr border 1 => garis tepi 1px -->
+         <table border="1">
+        <!-- tr>td*3 = buat struktur baris x 3 kolom -->
+        <tr>
+            <td>No</td>
+            <td>Nama Lengkap</td>
+            <td>Asal Kota / Kab</td>
+        </tr>
+        <tr>
+            <td>1</td>
+            <td>Fadhil</td>
+            <td>indramayu,Jawa Barat</td>
+        </tr>
+        <tr>
+            <td>2</td>
+            <td>Danendra</td>
+            <td>Brebes, Jateng</td>
+        </tr>
+        <tr>
+            <td>3</td>
+            <td>Rafi</td>
+            <td>Jaktim, Jakarta</td>
+        </tr>
+    </table>
+    <!-- standar table di HTML 5 -->
+    <!-- table>thead+tbody+tfoot = rumus table -->
+    <h2>Daftar Belanja</h2>
+    <table border="1" style="width: 50%">
+        <thead>
+            <tr>
+                <th>no</th>
+                <th>barang</th>
+                <th>Harga</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>1</td>
+                <td>Teh desa</td>
+                <td>2.500</td>
+            </tr>
+            <tr>
+                <td>2</td>
+                <td>Roti gembul</td>
+                <td>20.000</td>
+            </tr>
+            <tr>
+                <td>3</td>
+                <td>Pempek</td>
+                <td><b>5.000</b></td>
+            </tr>
+        </tbody>
+        <tfoot>
+            <tr>
+                <td></td>
+                <td>total pengeluaran</td>
+                <td> 17.500</td>
+            </tr>
+        </tfoot>
+    </table>
+    <h2>Daftar Piket</h2>
+    <p>
+        Belajar attribute rowspan dan colspan
+    </p>
+    <table border="1" widht=""50>
+        <thead>
+            <tr>
+                <th rowspan="2">No</th>
+                <th colspan="7">Pekan 1</th>
+            </tr>
+        <!-- Hilangkan th yg di awal karena sdh rowspan -->
+            <tr>
+                <th>Senin</th>
+                <th>Selasa</th>
+                <th>Rabu</th>
+                <th>Kamis</th>
+                <th>Jumat</th>
+                <th>Sabtu</th>
+                <th>Ahad</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <th>1</th>
+                <th>Uzi</th>
+                <th>Eren</th>
+                <th>Ujang</th>
+                <th>Budi</th>
+                <th>N</th>
+                <th>Gojo</th>
+                <th>J</th>
+            </tr>
+            <tr>
+                <td>2</td>
+                <td>A</td>
+                <td>Z</td>
+                <td>F</td>
+                <td>V</td>
+                <td>H</td>
+                <td>D</td>
+                <td>R</td>
+            </tr>
+        </tbody>
+    </table>
+</body>
+</html>

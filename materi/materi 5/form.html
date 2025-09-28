@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>HTML 5 FORM</title>
+
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/@picocss/pico@2/css/pico.min.css"
+    />
+  </head>
+  <body>
+    <main class="container">
+      <h1>HTML 5 FROM</h1>
+      <hr />
+      <h3>Input</h3>
+      <form>
+        <!-- Input: kolom input serbaguna (pendek) -->
+        <!-- tips shourtcut: input:[type-nya] -->
+        <div>
+          <label for="namaLengkap">Nama Lengkap</label>
+          <input type="text" name="nama_lengkap" id="namaLengkap" />
+        </div>
+        <div>
+          <label for="umur">Umur</label>
+          <input type="number" name="umur" id="umur" />
+        </div>
+        <div>
+          <label for="tglLahir">Tanggal Lahir</label>
+          <input type="date" name="tgl_lahir" id="tglLahir" />
+        </div>
+        <div>
+          <label for="alamatEmail">Alamat Email</label>
+          <input type="email" name="email" id="alamatEmail" />
+        </div>
+        <div>
+          <label for="password">Password</label>
+          <input type="password" name="password" id="password" />
+        </div>
+        <div>
+          <label>Jenis Kelamin</label>
+          <input type="radio" name="jenis_kelamin" id="laki-laki" />
+          <label for="laki-laki">Laki-Laki</label>
+          <input type="radio" name="jenis_kelamin" id="perempuan" />
+          <label for="perempuan">Perempuan</label>
+          <br><br>
+        </div>
+        <div>
+          <label>Minat Bahasa</label>
+          <input type="checkbox" name="minat" id="english" />
+          <label for="english">English</label>
+          <input type="checkbox" name="minat" id="japanese" />
+          <label for="japanese">Japanese</label>
+          <label type="checkbox" name="minat" id="arabic" 
+          <label for="arabic">Arabic</label>
+          <br><br>
+        </div>
+        <div>
+            <label for="asaldaerah"
+        </div>
+        <!-- action button -->
+        <!-- tips shourtcut: button:[type-nya] -->
+        <!-- Gunakan class grid agar jadi kolom -->
+        <div class="grid">
+          <button type="reset">Batal</button>
+          <button type="submit">Simpan</button>
+        </div>
+      </form>
+    </main>
+  </body>
+</html>
