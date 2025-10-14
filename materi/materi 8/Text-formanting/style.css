@@ -1,0 +1,77 @@
+.teks-tengah {
+    text-align: center;
+}
+.text-kiri {
+    text-align: left;
+}
+.text-kanan {
+    text-align: right;
+}
+.text-tengah {
+    text-align: center;
+}
+.text-rata {
+    text-align: justify;
+}
+
+/* atur ketebalan text */
+
+.tipis {
+    color: gold;
+    /* atur ketebalan */
+    font-weight: 100;
+    /* atur size */
+    font-size: small;
+}
+.agak-tebal {
+    font-weight: 500;
+    color: red;
+    font-size: 30px;
+}
+.tebal {
+    /* Bold = 700 + */
+    font-weight: bold;
+    color: indigo;
+    font-size: x-large;
+}
+
+/* hilangkan underline pada link (a) + */
+
+.button-google {
+    text-decoration: none;
+    background-color: tomato;
+    color: white;
+    padding: 4px 6px;
+}
+
+/* atur jarak tinggi antar baris teks */
+
+.pendek {
+    line-height: 0.8;
+    background-color: gray;
+}
+.tinggi {
+    line-height: 2;
+    background-color: chartreuse;
+}
+
+/* atur jarak antar huruf */
+
+.rapat {
+    letter-spacing: -2px;
+    background-color: skyblue;
+}
+.renggang {
+    letter-spacing: 6px;
+    background-color: plum;
+}
+
+/* atur jarak antar kata */
+.dekat {
+    word-spacing: -3px;
+    background-color: aqua;
+}
+.jauh {
+    word-spacing: 6px;
+    background-color: gold;
+}

@@ -1,0 +1,333 @@
+/* === RESET DASAR === */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: "Segoe UI", Arial, sans-serif;
+  background-color: #f9fafb;
+  color: #1e3a8a;
+  line-height: 1.6;
+}
+
+/* === HEADER === */
+.header {
+  text-align: center;
+  padding: 40px 20px 30px;
+}
+
+.header .logo {
+  width: 80px;
+  height: 80px;
+  object-fit: contain;
+  margin-bottom: 10px;
+}
+
+.header h1 {
+  font-size: 28px;
+  color: #1e40af;
+  margin-bottom: 5px;
+}
+
+.header .subtitle {
+  color: #475569;
+  font-size: 16px;
+}
+
+/* === NAVIGATION === */
+.navbar {
+  margin-top: 25px;
+}
+
+.navbar ul {
+  list-style: none;
+  display: flex;
+  justify-content: center;
+  gap: 15px;
+  
+}
+
+.navbar a {
+  display: inline-block;
+  padding: 10px 20px;
+  border-radius: 30px;
+  text-decoration: none;
+  color: #1e3a8a;
+  background-color: white;
+  border: 1px solid #e5e7eb;
+  transition: all 0.3s ease;
+}
+
+.navbar a:hover {
+  background-color: #3b82f6;
+  color: white;
+}
+
+.navbar a.active {
+  background-color: #1e40af;
+  color: white;
+  border-color: #1e40af;
+}
+
+/* === KONTEN UTAMA === */
+main {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 30px;
+  padding: 0 20px 50px;
+}
+
+/* === BOX === */
+.box {
+  background: white;
+  width: 100%;
+  max-width: 1000px;
+  padding: 25px 30px;
+  margin-bottom: 25px;
+  border-radius: 12px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.box:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.15);
+}
+
+/* === SECTION TITLE === */
+.section-title {
+  border-left: 4px solid yellow;
+  padding-left: 10px;
+  margin-bottom: 10px;
+  color: #1e40af;
+  font-size: 18px;
+}
+p {
+  color: black;
+}
+
+/* === GAMBAR BULAT === */
+.box {
+  background: white;
+  width: 100%;
+  max-width: 1000px;
+  padding: 25px 30px;
+  margin-bottom: 25px;
+  border-radius: 12px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  display: inline-block;
+}
+.section-title {
+  border-left: 4px solid yellow;
+  padding-left: 10px;
+  margin-bottom: 10px;
+  color: #1e40af;
+  font-size: 18px;
+  text-align: left;
+}
+.photo-bio {
+  width: 160px;
+  height: 160px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 3px solid #d1d1d4;
+  transition: transform 0.4s ease, border-color 0.4s ease;
+  margin: 15px 0;
+}
+
+.photo-bio:hover {
+  transform: scale(1.08);
+  border-color: #d1d1d4;
+}
+
+/* === GALERI === */
+.gallery {
+  display: flex;    
+  justify-content: center;   
+  gap: 20px;                 /* jarak antar gambar */
+  margin-top: 20px;
+}
+.card {
+  background-color: #ffffff;
+  border-radius: 12px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  overflow: hidden;
+  width: 220px;              /* ukuran tiap box gambar */
+  text-align: center;
+  margin-top: 200px auto;
+}
+.card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.25);
+}
+.card img {
+  width: 100%;
+  height: 180px;
+  object-fit: cover;
+  border-bottom: 3px solid #fafbfc;
+}
+.card figcaption {
+  padding: 10px;
+  font-weight: 600;
+  color: #1e3a8a;
+}
+
+/* BAGIAN VIDEO */
+.box {
+  background: white;
+  width: 100%;
+  max-width: 1000px;
+  padding: 25px 30px;
+  margin-top: 10px;
+  border-radius: 12px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  display: inline-block;
+}
+/* === BAGIAN JADWAL === */
+main {
+  margin-top: 40px;
+  display: flex;     /*mengatur posisi elemen di halaman web */
+  justify-content: center;
+}
+
+.schedule {
+  max-width: 900px;
+  margin: 0 auto;
+  text-align: left;
+}
+
+/* tabel jadwal */
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 20px;
+  border-radius: 8px;
+  overflow: hidden;  /*untuk mengatur tampilan isi (content) yang lebih besar dari ukuran elemen wadahnya (container).*/
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+}
+
+thead {
+  background-color: #1e3a8a;
+  color: white;
+  text-align: left;
+}
+
+th,
+td {
+  padding: 12px 16px;
+  border: 1px solid #e5e7eb;
+}
+
+th[colspan="2"] {
+  text-align: center;
+}
+
+tbody tr:nth-child(even) {
+  background-color: #f9fafb;
+}
+
+tbody tr:hover {
+  background-color: #e0ecff;
+  transition: background-color 0.3s ease;
+}
+
+.section-title {
+  padding-left: 10px;
+  border-left: 4px solid #facc15;
+  color: #1e3a8a;
+  margin-bottom: 10px;
+}
+
+/* === FEEDBACK PAGE === */
+.feedback-section {
+  max-width: 800px;
+  margin: 40px auto;
+  text-align: left;
+}
+.feedback-section form {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  margin-top: 20px;
+}
+label {
+  font-weight: 600;
+  color: #1e3a8a;
+}
+input[type="text"],
+input[type="email"],
+input[type="number"],
+select,
+textarea {
+  padding: 10px;
+  border: 1px solid #d1d5db;
+  border-radius: 8px;
+  font-size: 15px;
+  transition: border-color 0.3s ease;
+}
+input:focus,
+select:focus,
+textarea:focus {
+  border-color: #2563eb;
+  outline: none;
+  box-shadow: 0 0 4px rgba(37, 99, 235, 0.4);
+}
+fieldset {
+  border: none;
+  margin-top: 10px;
+}
+legend {
+  font-weight: 600;
+  color: #1e3a8a;
+  margin-bottom: 6px;
+}
+label input {
+  margin-right: 6px;
+}
+
+/* Tombol */
+.form-buttons {
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+  margin-top: 10px;
+}
+.btn-primary,
+.btn-secondary {
+  padding: 8px 16px;
+  border: none;
+  border-radius: 8px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+}
+.btn-primary {
+  background-color: #1e3a8a;
+  color: white;
+}
+.btn-primary:hover {
+  background-color: #2563eb;
+  transform: translateY(-2px);
+}
+.btn-secondary {
+  background-color: #6b7280;
+  color: white;
+}
+.btn-secondary:hover {
+  background-color: #9ca3af;
+  transform: translateY(-2px);
+}
+
+/* === FOOTER === */
+footer {
+  text-align: center;
+  color: #475569;
+  padding: 25px 0;
+  font-size: 14px;
+}

@@ -1,0 +1,134 @@
+/* 🌸 Reset dasar */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: "Poppins", sans-serif;
+  background: linear-gradient(to right, #e0f2fe, #f0fdf4);
+  color: #1e293b;
+  line-height: 1.6;
+  padding: 20px;
+}
+
+/* HEADER */
+.header {
+  text-align: center;
+}
+
+.logo img {
+  width: 100px;
+  transition: transform 0.5s ease;
+}
+
+.logo img:hover {
+  transform: rotate(10deg) scale(1.1);
+}
+
+h1 {
+  color: navy;
+  font-size: 2rem;
+  margin-top: 10px;
+}
+
+h3 {
+  color: blue;
+  font-weight: 400;
+}
+
+hr {
+  border: 1px solid #d1d5db;
+  margin: 15px auto;
+  width: 60%;
+}
+
+/* NAVIGATION */
+.navbar {
+  margin: 10px 0;
+}
+
+.navbar a {
+  color: #1e3a8a;
+  text-decoration: none;
+  margin: 0 10px;
+  font-weight: 600;
+  transition: color 0.3s ease, transform 0.3s ease;
+}
+
+.navbar a:hover {
+  color: #dc2626;
+  transform: scale(1.1);
+}
+
+/* BOX STYLE */
+.box {
+  background: #ffffffb0;
+  border: 1px solid #d1d5db;
+  border-radius: 12px;
+  padding: 20px;
+  margin: 25px auto;
+  width: 80%;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.box:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+/* SECTION TITLE */
+.section-title {
+  border-left: 5px solid blue;
+  padding-left: 10px;
+  margin-bottom: 10px;
+  color: blue;
+}
+
+/* PHOTO */
+.photo-hobi {
+  width: 220px;
+  height: 220px;
+  border-radius: 50%;
+  object-fit: cover;
+  display: block;
+  margin: 10px auto;
+  border: 3px solid #797c7a;
+  transition: transform 0.4s ease, box-shadow 0.4s ease;
+}
+
+.photo-hobi:hover {
+  transform: scale(1.05);
+  box-shadow: 0 6px 15px blue;
+}
+
+/* BUTTON */
+.btn-box {
+  text-align: center;
+  margin-top: 20px;
+}
+
+.btn-wave {
+  display: inline-block;
+  background: blue;
+  color: white;
+  padding: 10px 20px;
+  border-radius: 25px;
+  text-decoration: none;
+  font-weight: 600;
+  transition: background 0.4s ease, transform 0.3s ease;
+}
+
+.btn-wave:hover {
+  background: blue;
+  transform: scale(1.1);
+}
+
+/* FOOTER */
+footer {
+  text-align: center;
+  margin-top: 40px;
+  color: #4b5563;
+  font-size: 0.9rem;
+}

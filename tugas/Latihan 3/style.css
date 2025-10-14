@@ -60,6 +60,10 @@ p {
   padding: 20px;
 }
 .btn-wave {
+  /* mardin = jarak luar box */
+  /* padding = jarak didalem box */
+  /* display = menentukan bagaimana elemen muncul */
+  /* overflow = caea browser menangani kontenyg lebih besar dariukuran elemn */
   display: inline-block;
   padding: 12px 30px;
   background: #2b90dc;
@@ -106,6 +110,7 @@ p {
   transform: scale(1.1);
 }
 .li {
+  /* margin = jatak luar elemen */
   margin-top: 5px;
 }
 ul li::marker {
