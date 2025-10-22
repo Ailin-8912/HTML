@@ -1,0 +1,124 @@
+/* Import font utama */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap');
+
+/* Font lokal untuk judul */
+@font-face {
+  font-family: 'Tiny5';
+  src: url('fonts/Tiny5/Tiny5-Regular.ttf');
+}
+
+/* Font lokal (tanda tangan kaligrafi) */
+@font-face {
+  font-family: 'BismillahScript';
+  src: url('fonts/Bismillah/Bismillah\ Script.ttf');
+}
+
+/* Reset dasar */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* Body */
+body {
+  font-family: 'Poppins', sans-serif;
+  background: linear-gradient(180deg, #dbeafe, #f3f4f6);
+  color: #1f2937;
+  line-height: 1.8;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 40px 20px;
+}
+
+/* Header */
+header.box {
+  background-color: #e0f2fe;
+  width: 90%;
+  max-width: 950px;
+  text-align: center;
+  padding: 50px 20px;
+  border-radius: 12px;
+  box-shadow: 0 3px 8px rgba(0, 0, 0, 0.1);
+  margin-bottom: 40px;
+}
+
+/* Judul dengan font Tiny5 */
+header h1 {
+  font-family: 'Tiny5', cursive;
+  color: #1e3a8a;
+  font-size: 40px;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  margin-bottom: 10px;
+  font-weight: normal; /* ketebalan text */
+}
+
+/* Subjudul */
+header p {
+  color: #374151;
+  font-style: italic;
+  font-size: 16px;
+}
+
+/* Main content */
+main.box {
+  background: white;
+  border-radius: 12px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  width: 90%;
+  max-width: 950px;
+  padding: 40px;
+  text-align: justify; /* perataan text */
+}
+
+/* Subjudul artikel */
+h2 {
+  color: #065f46;
+  font-size: 22px;
+  margin-bottom: 12px;
+  border-left: 5px solid #22c55e;
+  padding-left: 10px;
+  font-family: 'Tiny5', cursive;
+}
+
+/* Blockquote */
+blockquote {
+  background-color: #e0e7ff;
+  border-left: 4px solid #1e3a8a;
+  font-style: italic;
+  color: #1e3a8a;
+  margin: 20px 0;
+  padding: 12px 15px;
+  border-radius: 8px;
+  transition: background-color 0.3s ease;
+  letter-spacing: 1px; /* Jarak antar huruf */
+  text-decoration: none; /* Garis pada text */
+  text-transform: uppercase; /* Huruf besar/kecil */
+}
+
+blockquote:hover {
+  background-color: #c7d2fe;
+}
+
+/* Note box */
+.note {
+  background-color: #fee2e2;
+  border-left: 4px solid #dc2626;
+  padding: 12px 15px;
+  color: #991b1b;
+  border-radius: 8px;
+  margin-top: 25px;
+  word-spacing: 5px; /* jarak antar kata */
+  line-height: 1.5; /* Jarak antar baris*/
+}
+
+/* Tanda tangan */
+.signature {
+  font-family: 'BismillahScript', cursive;
+  font-size: 32px; /* ukuran huruf */
+  width: 75%;
+  color: #b91c1c;
+  text-align: right;
+}
