@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Real App UI Component</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <h1>Tugas CSS Komponen </h1>
+
+    <!-- ALERT BOX -->
+    <section class="alert-box">
+      <div class="alert-info">
+        <p>ℹ️ Info: Harap periksa data anda sebelum dikirim.</p>
+        <button class="btn-close" onclick="this.parentElement.style.display='none'">×</button>
+      </div>
+    </section>
+
+    <!-- PROFILE CARD -->
+    <section class="profile-section">
+      <h2>Profil Pengguna</h2>
+      <div class="profile-card">
+        <div class="avatar-container">
+          <img src="image/Foto.jpg" alt="User Photo" class="avatar" />
+          <span class="status-badge"></span>
+        </div>
+        <h3>Fadhil Muhammad A.A</h3>
+        <p>Frontend Developer</p>
+      </div>
+    </section>
+
+    <!-- PRICING SECTION -->
+    <section class="pricing-section">
+      <h2>Paket Harga</h2>
+      <div class="pricing-cards">
+        <div class="card basic">
+          <h3 class="basic-card">Paket Basic</h3>
+          <p class="price">Rp 250.000</p>
+          <ul>
+            <li>10 Project</li>
+            <li>Community Support</li>
+          </ul>
+          <button class="btn-basic">Pilih Basic</button>
+        </div>
+
+        <div class="card pro">
+          <div class="popular-tag">POPULER</div>
+          <h3 class="pro-card">Pro</h3>
+          <p class="price">Rp 500.000</p>
+          <ul>
+            <li>50 Project</li>
+            <li>Priority Support</li>
+          </ul>
+          <button class="btn-pro">Pilih Pro</button>
+        </div>
+
+        <div class="card enterprise">
+          <h3 class="enterprise-card">Enterprise</h3>
+          <p class="price">Rp 1.000.000</p>
+          <ul>
+            <li>Unlimited Project</li>
+            <li>Dedicated Support</li>
+          </ul>
+          <button class="btn-enterprise">Beli Enterprise</button>
+        </div>
+      </div>
+    </section>
+  </body>
+</html>

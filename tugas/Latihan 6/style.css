@@ -1,0 +1,190 @@
+body {
+  font-family: Arial, sans-serif;
+  background: #f9fafb;
+  margin: 0;
+  padding: 20px;
+  color: #222;
+  background: rgb(252, 249, 249);
+}
+
+h1 {
+  text-align: center;
+  font-size: 28px;
+  margin-bottom: 30px;
+  color: #0f172a;
+}
+
+/* ===== ALERT BOX ===== */
+.alert-box {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 40px;
+}
+
+.alert-info {
+  position: relative;
+  background: #e0f2fe;
+  border: 1px solid #38bdf8;
+  padding: 12px 40px 12px 16px;
+  border-radius: 8px;
+  width: 420px;
+  box-shadow: 0 3px 8px rgba(0, 0, 0, 0.1);
+}
+
+.btn-close {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  background: transparent;
+  border: none;
+  font-size: 20px;
+  cursor: pointer; /* Untuk mengatur bentuk cursor (pointer) */
+  border-radius: 50%;
+  transition: 0.3s;
+}
+
+.btn-close:hover {
+  background: #bae6fd;
+}
+
+/* ===== PROFILE CARD ===== */
+.profile-section {
+  text-align: center;
+  margin-bottom: 50px;
+}
+
+.profile-card {
+  background: #fff;
+  border-radius: 12px;
+  padding: 20px;
+  width: 250px;
+  margin: 0 auto;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  position: relative;
+}
+
+.avatar-container {
+  position: relative;
+  display: inline-block;
+}
+
+.avatar {
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 3px solid #fff;
+}
+
+.status-badge {
+  position: absolute;
+  bottom: 10px;
+  right: 10px;
+  width: 14px;
+  height: 14px;
+  background: #16a34a;
+  border-radius: 50%;
+  border: 2px solid #fff;
+}
+
+/* ===== PRICING CARDS ===== */
+.pricing-section {
+  text-align: center;
+}
+
+.pricing-cards {
+  display: flex;
+  justify-content: center;
+  align-items: stretch;
+  gap: 20px;
+  flex-wrap: wrap;
+  margin-top: 20px;
+}
+
+.card {
+  background: #fff;
+  border: 1px solid #e5e7eb;
+  border-radius: 10px;
+  padding: 25px;
+  text-align: center;
+  width: 230px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
+  transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 6px 14px rgba(0, 0, 0, 0.12);
+}
+
+.card.pro {
+  border: 2px solid #f87171;
+  position: relative;
+}
+.card.basic {
+  border: 2px solid #60a5fa;
+  position: relative;
+}
+.pro-card {
+  color: #ef4444;
+}
+.basic-card {
+  color: #60a5fa;
+}
+.enterprise-card {
+  color: #10b981;
+}
+
+.popular-tag {
+  position: absolute;
+  top: -12px;
+  right: 15px;
+  background: #f87171;
+  color: #fff;
+  font-size: 12px;
+  padding: 4px 10px;
+  border-radius: 12px;
+}
+
+.card.enterprise {
+  border: 2px solid #10b981;
+}
+
+.price {
+  font-size: 18px;
+  font-weight: bold;
+  color: #0f172a;
+  margin: 10px 0;
+}
+
+button {
+  border: none;
+  padding: 10px 20px;
+  border-radius: 6px;
+  color: white;
+  cursor: pointer;
+  font-weight: bold;
+  margin-top: 12px;
+  transition: 0.3s;
+}
+
+.btn-basic {
+  background: #60a5fa;
+}
+.btn-basic:hover {
+  background: #3b82f6;
+}
+
+.btn-pro {
+  background: #f87171;
+}
+.btn-pro:hover {
+  background: #ef4444;
+}
+
+.btn-enterprise {
+  background: #34d399;
+}
+.btn-enterprise:hover {
+  background: #10b981;
+}

@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Website Profile</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+
+  <body>
+    <!-- HEADER -->
+    <header class="header">
+      <img src="images/logo.webp" alt="Logo HSI Boarding School" class="logo" />
+      <h1>HSI Boarding School Purworejo</h1>
+      <p class="subtitle">Website Profil Sederhana — Kelas X</p>
+      <div class="mobile-container">
+        <!-- NAVIGATION -->
+        <nav class="navbar">
+          <ul>
+            <li><a href="index.html" class="active">Beranda</a></li>
+            <div id="myLinks">
+              <li><a href="profile.html">Biodata</a></li>
+              <li><a href="jadwal.html">Jadwal</a></li>
+              <li><a href="galeri.html">Galeri</a></li>
+              <li><a href="feedback.html">Feedback</a></li>
+            </div>
+          </ul>
+          <a href="javascript:void(0);" class="icon" onclick="myFunction()">
+            <i class="fa fa-bars"></i>
+        </a>
+      </nav>
+    </div>
+    </header>
+
+    <main>
+      <!-- PENGANTAR -->
+      <section class="box">
+        <h3 class="section-title">Pengantar</h3>
+        <p>
+          <b>Hello World, Selamat Datang Di Website Saya.</b> <br />
+          Ini adalah <u><b>Website tugas HTML saya</b></u> dan ini adalah
+          website pertama yg saya buat di
+          <u>SMA<b>IT</b> <b>HSI</b> Boarding School</u>
+        </p>
+      </section>
+
+      <!-- MINAT SAYA -->
+      <section class="box">
+        <h3 class="section-title">My Favorit</h3>
+        <figure>
+          <img src="images/download.jpg" alt="Minat Saya" class="photo-bio" />
+        </figure>
+        <p>
+          Alasan saya memilih foto ini adalah karna <s>animenya</s> animasinya
+          lumayan bagus untuk <u>saya</u><br />
+          kalau untuk yg lain ya gatau ya..<br />
+          <b>Sorry</b> kalau penjelasannya sedikit
+        </p>
+      </section>
+    </main>
+
+    <!-- FOOTER -->
+    <footer>
+      <p>© 2025 HSI Boarding School Purworejo</p>
+    </footer>
+    <script>
+      function myFunction() {
+        var x = document.getElementById('myLinks')
+        if (x.style.display === 'block') {
+          x.style.display = 'none'
+        } else {
+          x.style.display = 'block'
+        }
+      }
+    </script>
+  </body>
+</html>

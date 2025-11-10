@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Website Profile </title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+
+  <body>
+    <!-- HEADER -->
+    <header class="header">
+      <img src="images/logo.webp" alt="Logo HSI Boarding School" class="logo" />
+      <h1>HSI Boarding School Purworejo</h1>
+      <p class="subtitle">Galeri Foto dan Video</p>
+
+      <!-- NAVIGATION -->
+      <nav class="navbar">
+        <ul>
+          <li><a href="index.html">Beranda</a></li>
+          <li><a href="profile.html">Biodata</a></li>
+          <li><a href="jadwal.html">Jadwal</a></li>
+          <li><a href="galeri.html" class="active">Galeri</a></li>
+          <li><a href="feedback.html">Feedback</a></li>
+        </ul>
+        <a href="javascript:void(0);" class="icon" onclick="myFunction()">
+          <i class="fa fa-bars"></i>
+        </a>
+      </nav>
+      <!-- Group Galeri -->
+      <main>
+        <section class="box">
+          <h3 class="section-title">My Images</h3>
+          <div class="gallery">
+            <figure class="card">
+              <img src="images/Susur Sungai.jpg" alt="Foto" width="100" />
+              <figcaption>Susur Sungai</figcaption>
+            </figure>
+            <figure class="card">
+              <img src="images/Kenangan Zunicord.jpg" alt="Foto" />
+              <figcaption>SMP</figcaption>
+            </figure>
+            <figure class="card">
+              <img src="images/Futsal.jpg" alt="Foto" />
+              <figcaption>Futsal</figcaption>
+            </figure>
+            <figure class="card">
+              <img src="images/Halaqoh.jpg" alt="Foto" />
+              <figcaption>SMA</figcaption>
+            </figure>
+          </div>
+        </section>
+      </main>
+      <main>
+          <div class="box">
+            <h3 class="section-title">Video</h3>
+            <iframe
+              width="560"
+              height="315"
+              src="https://www.youtube.com/embed/qKVW_wJs91Q?si=Q8AZuMBsEhOC3VKW"
+              title="YouTube video player"
+              frameborder="0"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+              referrerpolicy="strict-origin-when-cross-origin"
+              allowfullscreen
+            ></iframe>
+          </div>
+        </section>
+      </main>
+    </header>
+    <!-- FOOTER -->
+    <footer>
+      <p>© 2025 HSI Boarding School Purworejo</p>
+    </footer>
+
+    <script>
+      function myFunction() {
+        var x = document.getElementById('myLinks')
+        if (x.style.display === 'block') {
+          x.style.display = 'none'
+        } else {
+          x.style.display = 'block'
+        }
+      }
+    </script>
+  </body>
+</html>

@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Website Profile</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+
+  <body>
+    <!-- HEADER -->
+    <header class="header">
+      <img src="images/logo.webp" alt="Logo HSI Boarding School" class="logo" />
+      <h1>Formulir</h1>
+      <p class="subtitle">Kritik, Saran, dan Masukan</p>
+
+      <!-- NAVBAR -->
+      <nav class="navbar">
+        <ul>
+          <li><a href="index.html">Beranda</a></li>
+          <li><a href="profile.html">Biodata</a></li>
+          <li><a href="jadwal.html">Jadwal</a></li>
+          <li><a href="galeri.html">Galeri</a></li>
+          <li><a href="feedback.html" class="active">Feedback</a></li>
+        </ul>
+      </nav>
+    </header>
+
+    <!-- MAIN -->
+    <main>
+      <section class="box feedback-section">
+        <h3 class="section-title">Formulir Kontak & Saran</h3>
+        <p>
+          Silahkan isi Pertanyaan di bawah ini
+        </p>
+
+        <form>
+          <!-- Nama -->
+          <label for="nama">Nama Anda (Opsional):</label>
+          <input type="text" id="nama" placeholder="Tulis nama Anda" />
+
+          <!-- Email -->
+          <label for="email">Email Anda:</label>
+          <input
+            type="email"
+            id="email"
+            placeholder="Masukan Email"
+            required
+          />
+
+          <!-- Rating -->
+          <label for="rating">Rating Website ini:</label>
+          <input
+            type="number"
+            id="rating"
+            min="1"
+            max="1000"
+            placeholder="Rating Aja"
+            required
+          />
+
+          <!-- Rekomendasi -->
+          <fieldset>
+            <legend>Rekomendasi Website Ini?</legend>
+            <label><input type="radio" name="rekom" value="Sangat Bagus" />  Sangat Bagus</label>
+            <label><input type="radio" name="rekom" value="Biasa Aja" /> Biasa Aja</label>
+            <label><input type="radio" name="rekom" value="Kurang" /> Kurang</label>
+          </fieldset>
+
+          <!-- Topik -->
+          <fieldset>
+            <legend>Topik yang Paling Menarik:</legend>
+            <label><input type="checkbox" name="topik" value="biodata" /> Biodata</label>
+            <label><input type="checkbox" name="topik" value="jadwal" /> Jadwal</label>
+            <label><input type="checkbox" name="topik" value="galeri" /> Galeri</label>
+          </fieldset>
+
+          <!-- Bidang -->
+          <label for="bidang">Saran Pengembangan di Bidang:</label>
+          <select id="bidang" required>
+            <option value="">-- Pilih Bidang --</option>
+            <option value="desain">Desain & Tampilan</option>
+            <option value="konten">Konten & Informasi</option>
+          </select>
+
+          <!-- Pesan -->
+          <label for="pesan">Pesan/Saran Lengkap:</label>
+          <textarea
+            id="pesan"
+            rows="5"
+            placeholder="Tulis pesan, saran dan kritik Anda secara detail di sini..."
+            required
+          ></textarea>
+
+          <!-- Tombol -->
+          <div class="form-buttons">
+            <button type="reset" class="btn-secondary">Atur Ulang</button>
+            <button type="submit" class="btn-primary">Kirim Feedback</button>
+          </div>
+        </form>
+      </section>
+    </main>
+
+    <!-- FOOTER -->
+    <footer>
+      <p>© 2025 HSI Boarding School Purworejo</p>
+    </footer>
+  </body>
+</html>
