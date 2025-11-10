@@ -23,9 +23,6 @@
           <li><a href="galeri.html">Galeri</a></li>
           <li><a href="feedback.html" class="active">Feedback</a></li>
         </ul>
-        <a href="javascript:void(0);" class="icon" onclick="myFunction()">
-          <i class="fa fa-bars"></i>
-        </a>
       </nav>
     </header>
 
@@ -33,9 +30,7 @@
     <main>
       <section class="box feedback-section">
         <h3 class="section-title">Formulir Kontak & Saran</h3>
-        <p>
-          Silahkan isi Pertanyaan di bawah ini
-        </p>
+        <p>Silahkan isi Pertanyaan di bawah ini</p>
 
         <form>
           <!-- Nama -->
@@ -44,12 +39,7 @@
 
           <!-- Email -->
           <label for="email">Email Anda:</label>
-          <input
-            type="email"
-            id="email"
-            placeholder="Masukan Email"
-            required
-          />
+          <input type="email" id="email" placeholder="Masukan Email" required />
 
           <!-- Rating -->
           <label for="rating">Rating Website ini:</label>
@@ -65,17 +55,34 @@
           <!-- Rekomendasi -->
           <fieldset>
             <legend>Rekomendasi Website Ini?</legend>
-            <label><input type="radio" name="rekom" value="Sangat Bagus" />  Sangat Bagus</label>
-            <label><input type="radio" name="rekom" value="Biasa Aja" /> Biasa Aja</label>
-            <label><input type="radio" name="rekom" value="Kurang" /> Kurang</label>
+            <label
+              ><input type="radio" name="rekom" value="Sangat Bagus" /> Sangat
+              Bagus</label
+            >
+            <label
+              ><input type="radio" name="rekom" value="Biasa Aja" /> Biasa
+              Aja</label
+            >
+            <label
+              ><input type="radio" name="rekom" value="Kurang" /> Kurang</label
+            >
           </fieldset>
 
           <!-- Topik -->
           <fieldset>
             <legend>Topik yang Paling Menarik:</legend>
-            <label><input type="checkbox" name="topik" value="biodata" /> Biodata</label>
-            <label><input type="checkbox" name="topik" value="jadwal" /> Jadwal</label>
-            <label><input type="checkbox" name="topik" value="galeri" /> Galeri</label>
+            <label
+              ><input type="checkbox" name="topik" value="biodata" />
+              Biodata</label
+            >
+            <label
+              ><input type="checkbox" name="topik" value="jadwal" />
+              Jadwal</label
+            >
+            <label
+              ><input type="checkbox" name="topik" value="galeri" />
+              Galeri</label
+            >
           </fieldset>
 
           <!-- Bidang -->
@@ -108,16 +115,5 @@
     <footer>
       <p>© 2025 HSI Boarding School Purworejo</p>
     </footer>
-
-    <script>
-      function myFunction() {
-        var x = document.getElementById('myLinks')
-        if (x.style.display === 'block') {
-          x.style.display = 'none'
-        } else {
-          x.style.display = 'block'
-        }
-      }
-    </script>
   </body>
 </html>

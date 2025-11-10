@@ -39,23 +39,13 @@ body {
 /* === NAVIGATION === */
 .navbar {
   margin-top: 25px;
-  display: flex;;
-  justify-content: center;
-  align-items: center;
 }
 
 .navbar ul {
   list-style: none;
-  gap: 15px;
-}
-
-#myLinks {
   display: flex;
-  flex-direction: row;
-}
-
-.navbar a.icon {
-  display: none;
+  justify-content: center;
+  gap: 15px;
 }
 
 .navbar a {
@@ -729,14 +719,42 @@ footer {
 
   /* === NAVIGATION === */
 
-#myLinks {
-  flex-direction: column;
-}
+  .navbar {
+    margin-top: 24px;
+    flex-direction: column;
+  }
 
-#myLinks li a {
-  background-color: ;
-}
+  .navbar ul {
+    list-style: none;
+    display: flex;
+    justify-content: center;
+    gap: 14px;
+  }
+  .navbar a.icon {
+    display: none;
+  }
 
+  .navbar a {
+    display: inline-block;
+    padding: 8px 18px;
+    border-radius: 28px;
+    text-decoration: none;
+    color: #1e3a8a;
+    background-color: white;
+    border: 1px solid #e5e7eb;
+    transition: all 0.3s ease;
+  }
+
+  .navbar a:hover {
+    background-color: #3b82f6;
+    color: white;
+  }
+
+  .navbar a.active {
+    background-color: #1e40af;
+    color: white;
+    border-color: #1e40af;
+  }
 
   /* === KONTEN UTAMA === */
   main {
